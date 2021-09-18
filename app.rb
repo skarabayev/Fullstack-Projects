@@ -2,13 +2,13 @@ require 'sinatra'
 require_relative 'my_user_model.rb'
 
 set :bind, '0.0.0.0'
-set :port, '8080'
-enable: sessions
+set  :port, '8080'
+enable  :sessions
 
 get '/users' do
     user = User.new()
     @users = user.all()
-    erb: index
+    erb  :index
 end
 
 post '/users' do

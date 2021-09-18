@@ -14,12 +14,13 @@ class User
     
     def create(user_info)
         begin
-            db = SQlite3::Database.open"my_first_app.db"
-            db.execute "INSERT INTO users VALUES (#{user_info[0]},#{user_info[1]},#{user_info[2]},#{user_info[3]},#{user_info[4]},)"
+            db = SQlite3::Database.open "my_first_app.db"
+            db.execute "INSERT INTO users VALUES ('#{user_info[0]}','#{user_info[1]}','#{user_info[2]}','#{user_info[3]}','#{user_info[4]}')"
         rescue SQlite3:: exception => e 
             puts "Execption occured"
             puts e            
         ensure
+            id = db.last_insert_row_id
             db.close if db 
         end
     end
@@ -93,3 +94,6 @@ class User
         end
     end
 end
+
+user = User.new()
+user.create(['Max','Potosky',33,'1234','mail@mail.com'])
